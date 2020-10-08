@@ -100,6 +100,8 @@ var i;
             await client.say(channel, sayString);
             console.log(`*${sayString}`);
           }
+        case 'github':
+          await client.say(channel, "The githup page for this bot: https://github.com/matrh88/matrh88TTVbot");
 
           break;
         case 'slowmode':
