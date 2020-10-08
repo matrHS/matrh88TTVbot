@@ -100,6 +100,7 @@ var i;
             await client.say(channel, sayString);
             console.log(`*${sayString}`);
           }
+          break;
         case 'github':
           await client.say(channel, "The githup page for this bot: https://github.com/matrh88/matrh88TTVbot");
 
@@ -140,7 +141,7 @@ var i;
     i = 0;
     currentNumber = number
     
-    while (currentNumber != 1) {
+    while (currentNumber >= 1) {
       currentNumber = Math.floor(Math.random() * (currentNumber-1)+1)
       if (i%2 == 0){
         activeUser = a;
