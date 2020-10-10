@@ -56,8 +56,8 @@ var i;
           console.log(`* Executed ${splitCommand} command`);
           break;
         case 'deathroll':
-          if (isNaN(splitCommand[1])){
-            await client.say(channel, `"Ok dipwit, Syntax is: ¤Deathroll number userA userB`)
+          if (isNaN(splitCommand[1]) || splitCommand[1] <= 0){
+            await client.say(channel, `"Ok dipwit, Syntax is: ¤Deathroll number(greater than 0) userA userB`)
             break;
           }
           //Does a deathroll
@@ -76,12 +76,15 @@ var i;
           break;
 
         case 'pyramid':
-          if (isNaN(splitCommand[1])){
-            await client.say(channel, `"Ok dipwit, Syntax is: ¤Pyramid width emote`)
+          if (isNaN(splitCommand[1]) || splitCommand[1] <= 0){
+            await client.say(channel, `"Ok dipwit, Syntax is: ¤Pyramid width(greater than) emote`)
             break;
           }
           if (splitCommand[1] > 50) {
             splitCommand[1] = 50;
+          }
+          if (splitCommand[2] == undefined) {
+            splitCommand[2] = "Kappa";
           }
           //pyramidCreator("matrh88", splitCommand[1], splitCommand[2])
           var sayString;
@@ -141,7 +144,7 @@ var i;
     i = 0;
     currentNumber = number
     
-    while (currentNumber >= 1) {
+    while (currentNumber != 1) {
       currentNumber = Math.floor(Math.random() * (currentNumber-1)+1)
       if (i%2 == 0){
         activeUser = a;
