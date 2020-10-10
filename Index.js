@@ -56,8 +56,8 @@ var i;
           console.log(`* Executed ${splitCommand} command`);
           break;
         case 'deathroll':
-          if (isNaN(splitCommand[1]) || splitCommand[1] <= 0){
-            await client.say(channel, `"Ok dipwit, Syntax is: ¤Deathroll number(greater than 0) userA userB`)
+          if (isNaN(splitCommand[1]) || splitCommand[1] <= 0 || splitCommand[1] > 10000){
+            await client.say(channel, `"Ok dipwit, Syntax is: ¤Deathroll number(from 0-10000) userA userB`)
             break;
           }
           //Does a deathroll
