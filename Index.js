@@ -1,6 +1,7 @@
 const tmi = require('tmi.js');
 const { ChatClient, SlowModeRateLimiter, AlternateMessageModifier  } = require("dank-twitch-irc")
 const config = require("./Config.json")
+const sqlite3 = require('sqlite3').verbose();
 var i;
 
 
@@ -9,6 +10,41 @@ var i;
   // Create a client with our options
   //const client = new tmi.client(opts);
 
+  //Creates a new sqlite database file
+  let db = new sqlite3.Database('./matrh88.db', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log('Connected to the in-memory SQlite database.');
+  });
+
+  //Creates the "channels" table within the database file. If table exists error gets written
+  //to console and program continues
+  db.run('CREATE TABLE channels(channel name)', (err) => {
+    if (err) {
+      return console.error(err.message);
+    } 
+  })
+
+  //Insert channel into table
+  /*
+  db.run(`INSERT INTO channels(channel) VALUES(?)`,['matrh88'], function(err){
+    if (err) {
+      return console.log(err.message);
+    }
+    console.log(`A row has been inserted with rowid ${this.lastID}`);
+  });
+  */
+
+  //Query Data
+  db.all(`SELECT DISTINCT channel FROM channels`,[],(err,rows) => {
+    if (err) {
+      throw err;
+    }
+    rows.forEach((row) => {
+      console.log(row.channel);
+    });
+  });
 
   let client = new ChatClient(config); 
   

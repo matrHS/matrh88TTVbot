@@ -105,3 +105,6 @@ dist
 
 #Configuration file
 Config.json
+
+#Database files
+*.db
